@@ -166,8 +166,13 @@ Now that we have this lets build an interactive scatter plot!
 
 ### Interactive scatter plot
 
+Let's use the same data set to build a basic scatter plot with `plotly`!
 
-
+```r
+plot1 <- plot_ly(data = elephant_clean, x= ~year, y= ~abundance, type = "scatter", mode = "markers")
+plot1
+```
+The `plot_ly()` function is the main function inside the `plotly` package to build plots. We then have to 
 
 
 
