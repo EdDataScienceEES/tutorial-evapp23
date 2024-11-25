@@ -176,7 +176,7 @@ The `plot_ly()` function is the main function inside the `plotly` package to bui
 
 <center> <img src="{{ site.baseurl }}/int_scatter1.html" alt="Img" style="width: 800px;"/> </center>
 
-
+![ggplot scatter](/Visualisation/int_scatter1.html)
 
 
 
