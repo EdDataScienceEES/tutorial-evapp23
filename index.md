@@ -154,7 +154,7 @@ We already know how to make scatter plots using `ggplot2`so lets build one reall
       y = "Abundance"
     ))
 ```
-![interactive scatter](/Visualisation/ggplot_scatter.png)
+![ggplot scatter](/Visualisation/ggplot_scatter.png)
 
 
 ```r
@@ -174,11 +174,9 @@ plot1
 ```
 The `plot_ly()` function is the main function inside the `plotly` package to build plots. We then have to 
 
-<center> <img src="{{ site.baseurl }}/int_scatter1.html" alt="Img" style="width: 800px;"/> </center>
 
-![ggplot scatter](/Visualisation/int_scatter1.html)
+![interactive scatter](/Visualisation/int_scatter1.html)
 
-<center> <img src="{{ site.baseurl }}/int_scatter1" alt="Img" style="width: 800px;"/> </center>
 
 
 
