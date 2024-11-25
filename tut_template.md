@@ -154,6 +154,7 @@ We already know how to make scatter plots using `ggplot2`so lets build one reall
       y = "Abundance"
     ))
 ```
+![ggplot scatter](/Visualisation/ggplot_scatter.png)
 <center> <img src="{{ site.baseurl }}/ggplot_scatter.png" alt="Img" style="width: 800px;"/> </center>
 
 
