@@ -139,7 +139,8 @@ elephant_clean <- elephant_clean %>%
 
 ```
  
-##Static scatter plot using `ggplot2`##
+##Static scatter plot using `ggplot2`
+
 We already know how to make scatter plots using `ggplot2`so lets build one really quickly so we can then compare it to the much cooler interactive scatter plot.
 
 ```r
@@ -157,8 +158,13 @@ We already know how to make scatter plots using `ggplot2`so lets build one reall
 
 
 ```r
+#Saving the plot
 ggsave("ggplot_scatter.png", ggplot_scatter,width=14,height=8,dpi=450)
 ```
+
+Now that we have this lets build an interactive scatter plot!
+
+##Interactive scatter plot
 
 
 
