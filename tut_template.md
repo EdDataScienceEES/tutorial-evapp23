@@ -143,15 +143,15 @@ elephant_clean <- elephant_clean %>%
 We already know how to make scatter plots using `ggplot2`so lets build one really quickly so we can then compare it to the much cooler interactive scatter plot.
 
 ```r
-(basic_scatter <- ggplot(elephant_clean, aes(x= year, y= abundance, colour = Region)) +
-  geom_point(size = 3) +
-  geom_line() +
-  theme_classic() +
-  labs(
-    title = "Elephant abundance from 1970 to 2013",
-    x = "Year",
-    y = "Abundance"
-  ))
+(ggplot_scatter <- ggplot(elephant_clean, aes(x= year, y= abundance, colour = Region)) +
+    geom_point(size = 3) +
+    geom_line() +
+    theme_classic() +
+    labs(
+      title = "Elephant abundance from 1970 to 2013",
+      x = "Year",
+      y = "Abundance"
+    ))
 ```
 <center> <img src="{{ site.baseurl }}/ggplot_scatter.png" alt="Img" style="width: 800px;"/> </center>
 
