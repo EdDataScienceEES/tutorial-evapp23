@@ -76,7 +76,7 @@ We will use data from the Living Planet Index, which you have already downloaded
 
 ```{r}
 # Import data from the Living Planet Index - population trends of vertebrate species from 1970 to 2014
-data <- read.csv("LPIdata_CC.csv")
+load("data/LPI_data.Rdata")
 ```
 For the first plot we will be creating a scatter plot using `ggplot2`as a way to then later compare it to a scatter plot created using `plotly`.
 We will be plotting the __Elephant abundance from the year 1970 to 2013 in different African regions__
