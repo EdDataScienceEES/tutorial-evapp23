@@ -60,7 +60,7 @@ During this tutorial will be using `Plotly` to create several scatter plots, bar
 ## 3. Scatter plots
 As everyone know, before we even start we need to load our libraries!
 
-```r
+```{r}
 #_Loading libraries_
 library(tidyverse)
 library(dplyr)
@@ -74,7 +74,7 @@ library(plotly)
 
 We will use data from the Living Planet Index, which you have already downloaded from [the Github repository](https://github.com/ourcodingclub/CC-4-Datavis) (Click on Clone or Download/Download ZIP and then unzip the files)
 
-```r
+```{r}
 # Import data from the Living Planet Index - population trends of vertebrate species from 1970 to 2014
 data <- read.csv("LPIdata_CC.csv")
 ```
@@ -83,7 +83,7 @@ We will be plotting the __Elephant abundance from the year 1970 to 2013 in diffe
 
 So first we need to reshape and clean up our data
 
-```r
+```{r}
 # Reshaping data to long format and converting columns to numeric
 data2 <- data %>%
   gather("year", "abundance", 25:69) %>%
@@ -109,7 +109,7 @@ elephant_clean <- data2 %>%
 
 To be able to plot the elephant abundance across different African regions we are missing a column on regions. That is why we need to download the following package and data frame to be able to match the countries in our Living Planted Index data set to their respective African region.
 
-```r
+```{r}
 #install.packages("rnaturalearth")
 #install.packages("rnaturalearthdata")
 library(rnaturalearth)                  #These two packages will help us download data for countries and regions
@@ -143,7 +143,7 @@ elephant_clean <- elephant_clean %>%
 
 We already know how to make scatter plots using `ggplot2`so lets build one really quickly so we can then compare it to the much cooler interactive scatter plot.
 
-```r
+```{r}
 (ggplot_scatter <- ggplot(elephant_clean, aes(x= year, y= abundance, colour = Region)) +
     geom_point(size = 3) +
     geom_line() +
@@ -154,10 +154,9 @@ We already know how to make scatter plots using `ggplot2`so lets build one reall
       y = "Abundance"
     ))
 ```
-![ggplot scatter](/Visualisation/ggplot_scatter.png)
 
 
-```r
+```{r}
 #Saving the plot
 ggsave("ggplot_scatter.png", ggplot_scatter,width=14,height=8,dpi=450)
 ```
@@ -176,6 +175,8 @@ The `plot_ly()` function is the main function inside the `plotly` package to bui
 ```{r}
 plot1
 ```
+
+
 
 
 
