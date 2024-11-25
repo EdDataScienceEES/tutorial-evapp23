@@ -154,7 +154,7 @@ We already know how to make scatter plots using `ggplot2`so lets build one reall
       y = "Abundance"
     ))
 ```
-![ggplot scatter](/Visualisation/ggplot_scatter.png)
+![interactive scatter](/Visualisation/ggplot_scatter.png)
 
 
 ```r
