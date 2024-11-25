@@ -70,9 +70,6 @@ library(readr)
 #_install.packages("plotly")_
 library(plotly)
 
-#install.packages("rnaturalearth")
-#install.packages("rnaturalearthdata")
-library(rnaturalearth)                  #These two packages will help us download data for countries and regions
 ```
 
 We will use data from the Living Planet Index, which you have already downloaded from the Github repository (Click on Clone or Download/Download ZIP and then unzip the files)
@@ -81,7 +78,7 @@ We will use data from the Living Planet Index, which you have already downloaded
 # Import data from the Living Planet Index - population trends of vertebrate species from 1970 to 2014
 data <- read.csv("LPIdata_CC.csv")
 ```
-For the first plot we will be creating a scatter plot using `ggplot2`as a way to then compare it to a scatter plot created using `plotly`.
+For the first plot we will be creating a scatter plot using `ggplot2`as a way to then later compare it to a scatter plot created using `plotly`.
 We will be plotting the __Elephant abundance from the year 1970 to 2013 in different African regions__
 
 So first we need to reshape and clean up our data
@@ -110,13 +107,67 @@ elephant_clean <- data2 %>%
   ))
 ```
 
-And finally, plot the data:
+To be able to plot the elephant abundance across different African regions we are missing a column on regions. That is why we need to download the following package and data frame to be able to match the countries in our Living Planted Index data set to their respective African region.
 
 ```r
-ggplot(data = xy_fil, aes(x = x_dat, y = y_dat)) +  # Select the data to use
-	geom_point() +  # Draw scatter points
-	geom_smooth(method = "loess")  # Draw a loess curve
+#install.packages("rnaturalearth")
+#install.packages("rnaturalearthdata")
+library(rnaturalearth)                  #These two packages will help us download data for countries and regions
+
+# Load country data from rnaturalearth
+countries <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
+
+# Subset to African countries
+africa_countries <- countries %>%
+  filter(region_un == "Africa") %>%
+  select(name, region_un, subregion) %>%
+  rename(Country = name, Region = subregion)
+
+#Join our two datasets
+elephant_clean <- elephant_clean %>%
+  left_join(africa_countries, by = c("Country.list" = "Country"))
+  
+#Remove the  Western Africa region as there is only 4 data points on it and rename our other regions to make future coding easier 
+elephant_clean <- elephant_clean %>% 
+  filter(!Region %in% c("Western Africa")) %>% 
+  mutate(Region = case_when(
+    Region == "Eastern Africa" ~ "Eastern_Africa",
+    Region == "Middle Africa" ~ "Middle_Africa",
+    Region == "Southern Africa" ~ "Southern_Africa",
+    TRUE ~ `Region`
+  ))
+
 ```
+ 
+##Static scatter plot using `ggplot2`##
+We already know how to make scatter plots using `ggplot2`so lets build one really quickly so we can then compare it to the much cooler interactive scatter plot.
+
+```r
+(basic_scatter <- ggplot(elephant_clean, aes(x= year, y= abundance, colour = Region)) +
+  geom_point(size = 3) +
+  geom_line() +
+  theme_classic() +
+  labs(
+    title = "Elephant abundance from 1970 to 2013",
+    x = "Year",
+    y = "Abundance"
+  ))
+```
+<center> <img src="{{ site.baseurl }}/ggplot_scatter.png" alt="Img" style="width: 800px;"/> </center>
+
+
+```r
+ggsave("ggplot_scatter.png", basic_scatter,width=14,height=8,dpi=450)
+```
+
+
+
+
+
+
+
+
+
 
 At this point it would be a good idea to include an image of what the plot is meant to look like so students can check they've done it right. Replace `IMAGE_NAME.png` with your own image file:
 
