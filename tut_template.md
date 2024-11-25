@@ -72,7 +72,7 @@ library(plotly)
 
 ```
 
-We will use data from the Living Planet Index, which you have already downloaded from the Github repository (Click on Clone or Download/Download ZIP and then unzip the files)
+We will use data from the Living Planet Index, which you have already downloaded from [the Github repository](https://github.com/ourcodingclub/CC-4-Datavis) (Click on Clone or Download/Download ZIP and then unzip the files)
 
 ```r
 # Import data from the Living Planet Index - population trends of vertebrate species from 1970 to 2014
