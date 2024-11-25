@@ -178,6 +178,22 @@ The `plot_ly()` function is the main function inside the `plotly` package to bui
 
 ![ggplot scatter](/Visualisation/int_scatter1.html)
 
+<center> <img src="{{ site.baseurl }}/int_scatter1" alt="Img" style="width: 800px;"/> </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
