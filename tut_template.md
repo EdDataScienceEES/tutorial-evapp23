@@ -157,7 +157,7 @@ We already know how to make scatter plots using `ggplot2`so lets build one reall
 
 
 ```r
-ggsave("ggplot_scatter.png", basic_scatter,width=14,height=8,dpi=450)
+ggsave("ggplot_scatter.png", ggplot_scatter,width=14,height=8,dpi=450)
 ```
 
 
