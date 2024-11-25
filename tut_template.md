@@ -22,13 +22,18 @@ You can read this text, then delete it and replace it with your text about your 
 <a name="section1"></a>
 
 ## 1. Good Data Visualisation
+We have already learned from our previous data visualisation tutorials what makes a good plot. A quick recap on the main points:
+1. Appropriate plot type for results
+2. Plot is well organised
+3. X and Y axis are easy to read and have the correct units
+4. Clear and informative legend
 
+<a name="section2"></a>
 
-At the beginning of your tutorial you can ask people to open `RStudio`, create a new script by clicking on `File/ New File/ R Script` set the working directory and load some packages, for example `ggplot2` and `dplyr`. You can surround package names, functions, actions ("File/ New...") and small chunks of code with backticks, which defines them as inline code blocks and makes them stand out among the text, e.g. `ggplot2`.
+## 2. Are interactive plots that much better?
 
-When you have a larger chunk of code, you can paste the whole code in the `Markdown` document and add three backticks on the line before the code chunks starts and on the line after the code chunks ends. After the three backticks that go before your code chunk starts, you can specify in which language the code is written, in our case `R`.
+You may be asking yourself, why I am putting myself through more coding when I already know how to make plots using the ggplot2 package? 
 
-To find the backticks on your keyboard, look towards the top left corner on a Windows computer, perhaps just above `Tab` and before the number one key. On a Mac, look around the left `Shift` key. You can also just copy the backticks from below.
 
 ```r
 # Set the working directory
@@ -39,9 +44,7 @@ library(ggplot2)
 library(dplyr)
 ```
 
-<a name="section2"></a>
 
-## 2. The second section
 
 You can add more text and code, e.g.
 
