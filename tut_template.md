@@ -61,12 +61,12 @@ During this tutorial will be using `Plotly` to create several scatter plots, bar
 As everyone know, before we even start we need to load our libraries!
 
 ```r
-#*Loading libraries*
+#_Loading libraries_
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
 
-#*install.packages("plotly")*
+#__install.packages("plotly")__
 library(plotly)
 ```
 
