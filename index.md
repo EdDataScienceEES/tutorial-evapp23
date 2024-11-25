@@ -175,7 +175,7 @@ plot1
 The `plot_ly()` function is the main function inside the `plotly` package to build plots. We then have to 
 
 
-![interactive scatter](/Visualisation/int_scatter1.html)
+![interactive scatter](https://eddatascienceees.github.io/tutorial-evapp23/Visualisation/plot.html)
 
 
 
