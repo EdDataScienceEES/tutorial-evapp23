@@ -65,27 +65,49 @@ As everyone know, before we even start we need to load our libraries!
 library(tidyverse)
 library(dplyr)
 library(ggplot2)
+library(readr)
 
-#__install.packages("plotly")__
+#_install.packages("plotly")_
 library(plotly)
+
+#install.packages("rnaturalearth")
+#install.packages("rnaturalearthdata")
+library(rnaturalearth)                  #These two packages will help us download data for countries and regions
 ```
 
-
-
-You can add more text and code, e.g.
+We will use data from the Living Planet Index, which you have already downloaded from the Github repository (Click on Clone or Download/Download ZIP and then unzip the files)
 
 ```r
-# Create fake data
-x_dat <- rnorm(n = 100, mean = 5, sd = 2)  # x data
-y_dat <- rnorm(n = 100, mean = 10, sd = 0.2)  # y data
-xy <- data.frame(x_dat, y_dat)  # combine into data frame
+# Import data from the Living Planet Index - population trends of vertebrate species from 1970 to 2014
+data <- read.csv("LPIdata_CC.csv")
 ```
+For the first plot we will be creating a scatter plot using `ggplot2`as a way to then compare it to a scatter plot created using `plotly`.
+We will be plotting the __Elephant abundance from the year 1970 to 2013 in different African regions__
 
-Here you can add some more text if you wish.
+So first we need to reshape and clean up our data
 
 ```r
-xy_fil <- xy %>%  # Create object with the contents of `xy`
-	filter(x_dat < 7.5)  # Keep rows where `x_dat` is less than 7.5
+# Reshaping data to long format and converting columns to numeric
+data2 <- data %>%
+  gather("year", "abundance", 25:69) %>%
+  mutate(
+    year = parse_number(year),
+    abundance = as.numeric(abundance)
+  )
+  
+#Cleaning up the data
+elephant_clean <- data2 %>%
+  filter(str_detect(Common.Name, "African elephant")) %>%
+  select(Country.list, year, abundance) %>%
+  filter(!Country.list %in% c("Botswana, Tanzania, United Republic Of, South Africa, Uganda, Zimbabwe")) %>%
+  na.omit() %>% 
+  mutate(Country.list = case_when(
+    Country.list == "Tanzania, United Republic Of" ~ "Tanzania",
+    Country.list == "Congo, The Democratic Republic Of The" ~ "Dem. Rep. Congo",
+    Country.list == "Central African Republic" ~ "Central African Rep.",
+    Country.list == "Swaziland" ~ "eSwatini",
+    TRUE ~ `Country.list`
+  ))
 ```
 
 And finally, plot the data:
