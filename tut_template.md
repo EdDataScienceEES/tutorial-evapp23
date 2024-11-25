@@ -8,7 +8,7 @@ To add images, replace `tutheaderbl1.png` with the file name of any image you up
 
 #### <a href="#section2"> 2. Are interactive plots that much better?</a>
 
-#### <a href="#section3"> 3. Introduction to Plotly package</a>
+#### <a href="#section3"> 3. Introduction to `Plotly` package</a>
 
 #### <a href="#section4"> 4. Scatter plots</a>
 
@@ -36,16 +36,38 @@ You may be asking yourself, why I am putting myself through more coding when I a
 
 Interactive plots invite people to actively explore the data being presented to them rather than just looking at a static image. This helps with retention of what the plot is explaining as non-expert audiences can filter and custom the image and build their understanding.
 
-The one downside of interactive plots its that they are not appropriate for academic papers but they are commonly used for online websites and newspapers. 
+The one downside of interactive plots its that they are not appropriate for academic papers but they are commonly used for online websites and newspapers. So lets get started and learn how to make them!
 
+<a name="section3"></a>
+
+## 3. Introduction to `Plotly` package
+
+This tutorial will consist on learning how to make interactive plots using the `Plotly` package. The `Plotly` package utilities the power of Plotly.js, a popular JavaScript library for interactive plotting, and allow us to use R to create customisable, interactive, web-based visualisations.
+
+Some key features of this package:
+- Interactive plots: zoom, pan and hover features, with clickable legends and data point selection.
+- Wide range of plot types: can create any of the basic plots (scatter, barcharts, histograms) as well as more advanced and specialised plots(choropleths, 3D scatter plots, financial charts).
+- It works well with other common R packages such as `ggplot2`, `dplyr` or `shiny`.
+- It outputs plots that are HTML and web compatible: 
+- Cross-language compatibility: Though it uses R, the underlying Plotly.js library ensures that visualizations are consistent across Python, JavaScript, and R.
+
+This is a short summary of what this package can do but if you are curoius on the extent on what this package can do, head over to their website.
+
+During this tutorial will be using `Plotly` to create several scatter plots, bar charts and choropleths and at the same time learning the basic functions of this amazing package. 
+
+<a name="section4"></a>
+
+## 3. Scatter plots
+As everyone know, before we even start we need to load our libraries!
 
 ```r
-# Set the working directory
-setwd("your_filepath")
-
-# Load packages
-library(ggplot2)
+#Loading libraries
+library(tidyverse)
 library(dplyr)
+library(ggplot2)
+
+#install.packages("plotly")
+library(plotly)
 ```
 
 
@@ -78,9 +100,7 @@ At this point it would be a good idea to include an image of what the plot is me
 
 <center> <img src="{{ site.baseurl }}/IMAGE_NAME.png" alt="Img" style="width: 800px;"/> </center>
 
-<a name="section1"></a>
 
-## 3. The third section
 
 More text, code and images.
 
