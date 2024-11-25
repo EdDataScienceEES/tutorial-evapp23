@@ -32,7 +32,11 @@ We have already learned from our previous data visualisation tutorials what make
 
 ## 2. Are interactive plots that much better?
 
-You may be asking yourself, why I am putting myself through more coding when I already know how to make plots using the ggplot2 package? 
+You may be asking yourself, why I am putting myself through more coding when I already know how to make plots using the ggplot2 package? That is because interactive plots are amazing in visualising data in a way that is really engaging.
+
+Interactive plots invite people to actively explore the data being presented to them rather than just looking at a static image. This helps with retention of what the plot is explaining as non-expert audiences can filter and custom the image and build their understanding.
+
+The one downside of interactive plots its that they are not appropriate for academic papers but they are commonly used for online websites and newspapers. 
 
 
 ```r
