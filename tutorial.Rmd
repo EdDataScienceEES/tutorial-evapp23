@@ -39,7 +39,7 @@ You may be asking yourself, why I am putting myself through more coding when I a
 
 Interactive plots invite people to actively explore the data being presented to them rather than just looking at a static image. This helps with retention of what the plot is explaining as non-expert audiences can filter and custom the image and build their understanding.
 
-The one downside of interactive plots its that they are not appropriate for academic papers but they are commonly used for online websites and newspapers. So lets get started and learn how to make them!
+The one downside of interactive plots its that they are not appropriate for academic papers but they are commonly used for online websites and newspapers. So let's get started and learn how to make them!
 
 <a name="section3"></a>
 
@@ -51,7 +51,7 @@ Some key features of this package:
 
  - Interactive plots: zoom, pan and hover features, with clickable legends and data point selection.
  
- - Wide range of plot types: can create any of the basic plots (scatter, bar charts, histograms) as well as more advanced and specialised plots(choropleths, 3D scatter plots, financial charts).
+ - Wide range of plot types: can create any of the basic plots (scatter, bar charts, histograms), as well as more advanced and specialised plots (choropleths, 3D scatter plots, financial charts).
  
  - It works well with other common R packages such as `ggplot2`, `dplyr` or `shiny`.
  
@@ -59,7 +59,7 @@ Some key features of this package:
  
  - Cross-language compatibility: Though it uses R, the underlying Plotly.js library ensures that visualizations are consistent across Python, JavaScript, and R.
 
-This is a short summary of what this package can do but if you are curoius on the extent on what this package can do, head over to their [website](https://plotly.com/r/).
+This is a short summary of what this package can do but if you are curious on the extent of what this package can do, head over to their [website](https://plotly.com/r/).
 
 During this tutorial will be using `Plotly` to create several scatter plots, bar charts and choropleths and at the same time learning the basic functions of this amazing package. 
 
@@ -86,10 +86,12 @@ We will use data from the Living Planet Index, which you have already downloaded
 load("data/LPI_data.Rdata")
 ```
 
-For the first plot we will be creating a scatter plot using `ggplot2`as a way to then later compare it to a scatter plot created using `plotly`.
+For the first plot, we will be creating a scatter plot using `ggplot2`as a way to then later compare it to a scatter plot created using `plotly`.
 We will be plotting the __Elephant abundance from the year 1970 to 2013 in different African regions__
 
-So first we need to reshape and clean up our data
+So first we need to reshape and clean up our data:
+
+>**Note:** This tutorial is not focusing on cleaning and manipulating data using `tidyverse`or `dlpyr`. However, if you are still strugling with this, then head over to this [tutorial](https://ourcodingclub.github.io/tutorials/data-manip-intro/) and try it out!
 
 ```{r}
 # Reshaping data to long format and converting columns to numeric
@@ -115,7 +117,7 @@ elephant_clean <- data2 %>%
   ))
 ```
 
-To be able to plot the elephant abundance across different African regions we are missing a column on regions. That is why we need to download the following package and data frame to be able to match the countries in our Living Planted Index data set to their respective African region.
+To be able to plot the elephant abundance across different African regions we are missing a column on regions. That is why we need to download the following package and data frame to be able to match the countries in our Living Planted Index data set to their respective African regions.
 
 ```{r}
 #install.packages("rnaturalearth")
@@ -147,11 +149,10 @@ elephant_clean <- elephant_clean %>%
 
 ```
 
->**Note:** This tutorial is not focusing on cleaning and manipulating data using `tidyverse`or `dlpyr`. However, if you are still strugling with this, then head over to this [tutorial](https://ourcodingclub.github.io/tutorials/data-manip-intro/) and try it out!
  
 ## Static scatter plot using `ggplot2`
 
-We already know how to make scatter plots using `ggplot2`so lets build one really quickly so we can then compare it to the much cooler interactive scatter plot.
+We already know how to make scatter plots using `ggplot2`, so let's build one really quick.
 
 >**Note:** if this sounds and looks overwhelming (trust me it can be) then head over to the Coding club tutorial on [data visualisation](https://ourcodingclub.github.io/tutorials/datavis/)!
 
@@ -167,14 +168,14 @@ We already know how to make scatter plots using `ggplot2`so lets build one reall
     ))
 ```
 
-Pretty simple to build a non interactive plot but it is kind of boring now that we know interactive plots exist!
+Pretty simple to build a non-interactive plot but it is kind of boring now that we know interactive plots exist!
 
 ```{r}
 #Saving the plot
 ggsave("ggplot_scatter.png", ggplot_scatter,width=14,height=8,dpi=450)
 ```
 
-Now that we have this lets build an interactive scatter plot!
+Now that we have this, lets build an interactive scatter plot!
 
 ## Interactive scatter plot
 
@@ -184,9 +185,9 @@ Let's use the same data set to build a basic scatter plot with `plotly`!
 plot1 <- plot_ly(data = elephant_clean, x= ~year, y= ~abundance, type = "scatter", mode = "markers")
 ```
 
-The `plot_ly()` function is the main function inside the `plotly` package to build plots. To then build a plot we then have to specify which data set we are using and which variables we are putting in the x and y axis. `type = "scatter"` will tell our function we are wanting to plot a scatter graphs and `mode = "markers"` will tell it that we want dots for our data points.
+The `plot_ly()` function is the main function inside the `plotly` package to build plots. We then have to specify which data set we are using and which variables we are putting in the x and y axis. `type = "scatter"` will tell our function we are wanting to plot a scatter graphs and `mode = "markers"` will tell it that we want dots for our data points.
 
->**Note:** Whenever you are calling any columns from a data frame using the `plotly()` function you need to put the `~` beforehand. 
+>**Note:** Whenever you are calling any columns from a data frame using the `plot_ly()` function you need to put the `~` beforehand. 
 
 ```{r}
 plot1
@@ -202,7 +203,7 @@ htmlwidgets::saveWidget(plot1, "int_scatter1.html")
 ```
 
 #### Grouped scatter plot
-The scatter plot build with `ggplot2` still looks slightly better than the interactive one and its because the population of elephants is grouped by african region, so lets do that really quickly!
+The scatter plot built with `ggplot2` still looks slightly better than the interactive one and its because the population of elephants is grouped by african region, so lets do that really quickly!
 
 ```{r}
 plot2 <- plot_ly(data = elephant_clean, x= ~year, y= ~abundance, color = ~Region, type= "scatter", mode = "markers")
@@ -221,19 +222,19 @@ htmlwidgets::saveWidget(plot2, "int_scatter2.html")
 ```
 
 #### Customisation of scatter plot
-You may be asking yourself: What if I want to add lines, change the colour of the graph or add labels and titles? Well lets run throught all of these.
+You may be asking yourself: What if I want to add lines, change the colour of the graph or add labels and titles? Well, lets run throught all of these.
 
 ```{r}
 plot3 <- plot_ly(data = elephant_clean, x= ~year, y= ~abundance, color = ~Region, type= "scatter", mode = "lines+markers",
                  colors = "Paired") %>% 
-  layout(title = 'Elphant Abundance over the years in different regions of Africa',
+  layout(title = 'Elephant Abundance over the years in different regions of Africa',
          yaxis = list(title = "Elephant Abundance"),
          xaxis = list(title = "Year"))
 ```
 
-Lets break this down, to add lines to the plot you just need to update `mode =` so it tell the function we want both lines and markers. To change the colour of the dots we add the `colors =`function. Finally to add titles and labels we need to pipe the new function `layout()`. `title = ""` lets you add a title to the plot, `yaxis = list(title = "")` lets you rename the y axis and `xaxis = list(title = "")` lets you rename the x axis.
+Lets break this down, to add lines to the plot you just need to update `mode =` so it tells the function we want both lines and markers. To change the colour of the dots we add the `colors =`function and choose a colorway. Finally to add titles and labels we need to pipe the new function `layout()`. `title = ""` lets you add a title to the plot, `yaxis = list(title = "")` lets you rename the y axis and `xaxis = list(title = "")` lets you rename the x axis.
 
->**Note:** Be careful with `color =` and `colors =`, even though they look the same, the former lets you group and colour based on a category but the second one lets you actually change the color of the markers. I know, pretty annoying!
+>**Note:** Be careful with `color =` and `colors =`, even though they look the same, the former lets you group and colour based on a category from your data set but the second one let's you actually change the color of the markers. I know, pretty annoying!
 
 >**Note:** If you want to know all about colors in `plotly`then head over to this [page on their website](https://plotly.com/r/discrete-color/)
 
@@ -254,9 +255,9 @@ As we can see a scatter plot may have not been the best choice to represent this
 <a name="section5"></a>
 
 ## 5. Bar charts
-Lets say we want to plot __the different Elephant abundance over two time ranges in different African regions__. Well a bar chart would be a great way of visualising this!
+Let's say we want to plot __Elephant abundance over two time ranges in different African regions__. Well a bar chart would be a great way of visualising this!
 
-To do this we need to calculate the mean abundace over the time ranges of our choosing
+To do this we need to calculate the mean abundace over the time ranges of our choosing.
 
 ```{r}
 # Calculate mean abundance for each region in the specified year ranges
@@ -274,7 +275,7 @@ mean_abundance$YearRange <- factor(mean_abundance$YearRange, levels = c("1970-19
 ```
 
 ## Static bar chart using `ggplot2`
-Lets first plot a static bar chart using `ggplot2` so we can then compare it to an interactive one.
+Let's first plot a static bar chart using `ggplot2` so we can then compare it to an interactive one.
 
 ```{r}
 (ggplot_bar <- ggplot(mean_abundance, aes(fill=Region, x= YearRange, y= MeanAbundance)) +
@@ -286,7 +287,7 @@ Lets first plot a static bar chart using `ggplot2` so we can then compare it to 
   theme_bw())
 ```
 
-Pretty simple bar chart; but lets be honest, quite boring now that we know interactive plots exist!
+Pretty simple bar chart; but lets be honest, quite boring now that we know how to build interactive plots!
 
 ```{r}
 ggsave("ggplot_bar.png", ggplot_bar,width=14,height=8,dpi=450)
@@ -297,13 +298,13 @@ ggsave("ggplot_bar.png", ggplot_bar,width=14,height=8,dpi=450)
 So there is actually two ways we can build a bar chart with `plotly`. The first one will create our typical bar chart; while the second one will allow us to customize it as we see fit. Bear with me as we go through both ways!
 
 ### 1st way!
-For the first way we will build the bar chart the same way as our scatter plot.
+For the first way, we will build the bar chart the same way as our scatter plot.
 
 ```{r}
 bar_plotly <- plot_ly(data = mean_abundance,x= ~YearRange, y= ~MeanAbundance, type="bar",color = ~Region, colors = "Paired")
 ```
 
-We can see the same format as before; `plot_ly` to build the figure, calling the dataset as well as the x and y variables and finally we are still grouping by `color = ~Region`and choosing a specific colorway `colors = ""`. The only difference between this plot and the scatter graph is, that we are telling our function that we want to build a bar chart, `type = "bar"`.
+We can see the same format as before; `plot_ly` to build the figure, calling the dataset as well as the x and y variables and finally we are still grouping by `color = ~Region` and choosing a specific colorway `colors = ""`. The only difference between this plot and the scatter graph is, that we are telling our function that we want to build a bar chart, `type = "bar"`.
 
 ```{r}
 bar_plotly
@@ -332,7 +333,7 @@ bar_2way <- plot_ly(data = mean_abund_wide, x = ~YearRange, y = ~Eastern_Africa,
 ```
 
 Don't panic! Lets go through the code!
-In the first line, we use `plot_ly` to tell R that we are building a plot, using the data from `mean_abund_wide`. We then tell it we want `YearRange`as our x-axis and `Eastern_Africa` as our y-axis and that we are building a bar chart (`type= 'bar'`). The `add_trace()` function is adding two more bar for each of the Regions, each with their respective y value and their respective `name =""`. We are finally telling R that we want our y-axis label to be 'Abundance' and for our bar chart to be grouped `barmode = "group"`.
+In the first line, we use `plot_ly` to tell R that we are building a plot, using the data from `mean_abund_wide`. We then tell it we want `YearRange`as our x-axis and `Eastern_Africa` as our y-axis (in our first layer) and that we are building a bar chart (`type= 'bar'`). The `add_trace()` function is adding two more layers bars for each of the Regions, each with their respective y value and their respective `name =""`. We are finally telling R that we want our y-axis label to be 'Abundance' and for our bar chart to be grouped `barmode = "group"`.
 
 ```{r}
 bar_2way
@@ -391,7 +392,7 @@ htmlwidgets::saveWidget(direct_rotated_bar, "direct_rotated_bar.html")
 ```
 
 #### Specific coloured bars
-Finally, say that we wish to choose specific colours for each of the bars
+Finally, say that we wish to choose specific colours for each of the bars.
 
 ```{r}
 final_bar <- plot_ly(data = mean_abund_wide, x = ~YearRange, y = ~Eastern_Africa, type = 'bar', name = 'Eastern Africa',
@@ -423,13 +424,13 @@ We are almost finished but before we go, lets learn how to create one final type
 <a name="section6"></a>
 
 ## 6. Choropleths
-Just in case you don't know a choropleth is a type of map used to represent data through varying shades or patterns within predefined geographic regions. 
+Just in case you don't know a choropleth is, they are a type of map used to represent data through varying shades or patterns within predefined geographic regions. 
 
-So we want to create a interactive choropleth of Africa to show us the __elephant abundance for different countries over the years__.
+Let us now create a interactive choropleth of Africa to show us the __Elephant abundance for different countries over the years__.
 
 So lets get coding!
 
-We first need to clean up the data a bit more because some countries have several values of abundance for the same year
+We first need to clean up the data a bit more because some countries have several values of abundance for the same year.
 
 ```{r}
 elephant_map_df <- elephant_clean %>% 
@@ -445,7 +446,7 @@ africa_map <- plot_geo(elephant_map_df, locationmode = "country names", frame = 
             z =~total_abundance)
 ```
 
-A quick explanation of the code. We can see that this time we are using the `plot_geo()` function to build the figure because this function is specifically designed to create geographic visualisations. `locationmode = "country names"` tells R that we are going to be using country names to build our geographic data. The slider at the bottom of the interactive plot that goes through the years is created by `frame = "~year"`. `add_trace()` adds another layer to our plot. `locations = ~Country.list` maps the countries from our data set and `z=~total_abundance` uses the values in that column to colour or map. 
+A quick explanation of the code. We can see that this time we are using the `plot_geo()` function to build the figure because this function is specifically designed to create geographic visualisations. `locationmode = "country names"` tells R that we are going to be using country names to build our geographic data. The slider at the bottom of the interactive plot that goes through the years is created by `frame = "~year"`. `add_trace()` adds another layer to our plot with `locations = ~Country.list` which maps the countries from our data set and `z=~total_abundance` uses the values in that column to colour or map. 
 
 ```{r}
 africa_map
@@ -467,7 +468,7 @@ africa_map <- plot_geo(elephant_map_df, locationmode = "country names", frame = 
          title = "Total elephant abundance in Africa\n from 1970 to 2013")
 ```
 
-Lets run through this code together. `zmin` and `zmax` sets the minimum and maximum values for the color scale: 0 to the maximum value of total_abundance. `color = ~total_abundance` specifies that the `total_abundance` column should determine the colors. `colorscale = "Plasma"` applies the predefined Plotly color scale "Plasma". Finally, `geo = list(scope = "africa")` limits the map's geographic scope to Africa and we added a `title =` to the map.
+Lets run through this code together. `zmin` and `zmax` sets the minimum and maximum values for the color scale: from 0 to the maximum value of total_abundance. `color = ~total_abundance` specifies that the total_abundance column should determine the colors. `colorscale = "Plasma"` applies the predefined Plotly color scale "Plasma". Finally, `geo = list(scope = "africa")` limits the map's geographic scope to Africa and we added a `title =` to the map.
 
 ```{r}
 africa_map
