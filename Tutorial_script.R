@@ -1,6 +1,5 @@
 #tutorial Data Science 2024
 #Eva Pelaez
-rm(list = ls())
 
 
 #libraries
@@ -91,11 +90,6 @@ plot3 <- plot_ly(data = elephant_clean, x= ~year, y= ~abundance, color = ~Region
                  colors = "Dark2")
 plot3
 
-#changing markers so they are symborls
-plot4 <- plot_ly(data = elephant_clean, x= ~year, y= ~abundance, type= "scatter", mode = "markers",
-                 symbol = ~Region, symbols = c("circle", "x", "o"), color = I("blue"), marker = list(size=10))
-plot4
-
 htmlwidgets::saveWidget(plot1, "int_scatter1.html")
 htmlwidgets::saveWidget(plot2, "int_scatter2.html")
 htmlwidgets::saveWidget(plot3, "int_scatter3.html")
@@ -114,6 +108,7 @@ mean_abundance <- elephant_clean %>%
 
 mean_abundance$YearRange <- factor(mean_abundance$YearRange, levels = c("1970-1989", "1990-2010"))
 
+#baisc ggplot bar chart
 (basic2 <- ggplot(mean_abundance, aes(fill=Region, x= YearRange, y= MeanAbundance)) +
   geom_bar(stat = "identity", position = "dodge") +  # Use stat="identity" to plot MeanAbundance as is
   labs(title = "Mean Abundance by Region and Year Range",
@@ -128,19 +123,10 @@ ggsave("ggplot_bar.png", basic2,width=14,height=8,dpi=450)
 bar_plotly <- plot_ly(data = mean_abundance,x= ~YearRange, y= ~MeanAbundance, type="bar",color = ~Region)
 htmlwidgets::saveWidget(bar_plotly, "simpleway_bar_plotly.html")
 
-#this doess give us a pretty nice bar chart but we are not able to customize the individual bars
-
-
+#transforming data from long to wide format
 mean_abund_wide <- spread(mean_abundance,Region, MeanAbundance)
 
-#figure for just one variable
-fig2 <- plot_ly(data = mean_abund_wide, x = ~YearRange, y = ~Eastern_Africa, type = 'bar', name = 'Eastern Africa')
-fig2
-htmlwidgets::saveWidget(fig2, "step1_bar.html")
-
-#step1: build bar chart with one of the varibale
-
-#figure with added grouped bars
+#bar chart grouped bars
 fig3 <- plot_ly(data = mean_abund_wide, x = ~YearRange, y = ~Eastern_Africa, type = 'bar', name = 'Eastern Africa') %>% 
   add_trace(y = ~Middle_Africa, name = 'Middle Africa') %>% 
   add_trace(y = ~Southern_Africa, name = 'Southern Africa') %>% 
@@ -148,14 +134,11 @@ fig3 <- plot_ly(data = mean_abund_wide, x = ~YearRange, y = ~Eastern_Africa, typ
 fig3
 htmlwidgets::saveWidget(fig3, "adding_variables_bar.html")
 
-#add the remaining variables
-
 #figure with stacked bars
 fig_stacked <- fig3 %>% layout(yaxis = list(title = 'Count'), barmode = 'stack')
 fig_stacked
 htmlwidgets::saveWidget(fig_stacked, "stacked_bar.html")
 
-#changing it so its a stacked bar chart if wanted
 
 #fig with direct labels on bars
 fig <- plot_ly(data = mean_abund_wide, x = ~YearRange, y = ~Eastern_Africa, type = 'bar', name = 'Eastern Africa', 
