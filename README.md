@@ -1,6 +1,15 @@
-## Tutorial assigment link: https://eddatascienceees.github.io/tutorial-evapp23/tutorial.html
+## Tutorial website: https://eddatascienceees.github.io/tutorial-evapp23/tutorial.html
+
+In this repository you will find:
+
+- `Script`: both the r script and the Rmarkdown file with the code located here.
+- `Visualisation`: all of the plot files are located here
+- `data`: where you can accces the Living Planet Index data set
 
 
+__Note: if the link above does not work please download the `tutorial.html` file locally to access the website__
+
+Tutorial website: https://eddatascienceees.github.io/tutorial-evapp23/tutorial.html 
 
 
 
